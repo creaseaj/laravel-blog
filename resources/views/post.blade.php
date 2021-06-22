@@ -1,9 +1,8 @@
-<x-layout>
+<x-layout :categories='$categories' :currentCategory='$currentCategory'>
     <main class="mx-auto mt-10 lg:mt-20 space-y-6">
         <article class="max-w-7xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
             <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                 <img src="/images/illustration-1.png" alt="" class="rounded-xl">
-
                 <p class="mt-4 block text-gray-400 text-xs">
                     Published <time>{{$post->created_at->diffForHumans()}}</time> by <b>{{$post->author->name}}</b>
                 </p>
@@ -41,7 +40,7 @@
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">
-                    <p>{{$post->body}}</p>
+                    <p>{!!$post->body!!}</p>
                 </div>
             </div>
         </article>
