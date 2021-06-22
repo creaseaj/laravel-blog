@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,33 +18,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-    $posts = Post::latest();
-    if (request('search')) {
-        $posts->where('title', 'like', '%' . request('search') . '%')->
-        orWhere('body', 'like','%' . request('search') . '%');
-    }
-    return view('posts',[
-        'posts' => $posts->with('category','author')->get(),
-        'currentCategory' => null,
-        'categories' => Category::all()
-    ]);
-})->name('home');
-Route::get('posts/{post}',   function (Post $post) {
-    return view('post', [
-        'post' => $post,
-        'currentCategory' => null,
-        'categories' => Category::all()
-    ]);
-});
+Route::get('/', [PostController::class, 'index'])->name('home');
 
-Route::get('category/{category:slug}',function(Category $category){
-    return view('posts  ', [
-        'posts' => $category->posts->load(['category','author']),
-        'currentCategory' => $category,
-        'categories' => Category::all()
-    ]);
-})->name('category');
+Route::get('posts/{post}',  [PostController::class,'show']);
+
+Route::get('category/{category:slug}',[PostController::class,'index'])->name('category');
 
 Route::get('category', function() {
     return view('categories', [
