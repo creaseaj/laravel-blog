@@ -1,8 +1,8 @@
-<x-layout>
+<x-layout :categories='$categories' :currentCategory='$currentCategory'>
     @if ($posts->count())
    <x-posts-grid :posts='$posts'/>
     @else
-    <p class="text-center">No Posts Yet!</p> 
+    <p class="text-center">No Posts Yet!</p>
     @endif
 
 </x-layout>

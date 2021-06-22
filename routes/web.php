@@ -10,7 +10,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------U------------------------------
+|--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by thae RouteServiceProvider within a group which
@@ -20,9 +20,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts',[
-        'posts' => Post::latest()->with('category','author')->get()
+        'posts' => Post::latest()->with('category','author')->get(),
+        'currentCategory' => null,
+        'categories' => Category::all()
     ]);
-});
+})->name('home');
 Route::get('posts/{post}',   function (Post $post) {
     return view('post', [
         'post' => $post
@@ -31,12 +33,17 @@ Route::get('posts/{post}',   function (Post $post) {
 
 Route::get('category/{category:slug}',function(Category $category){
     return view('posts  ', [
-        'posts' => $category->posts->load(['category','author'])
+        'posts' => $category->posts->load(['category','author']),
+        'currentCategory' => $category,
+        'categories' => Category::all()
     ]);
-});
+})->name('category');
+
 Route::get('category', function() {
     return view('categories', [
-        'categories' => Category::all()->load('posts')
+        'categories' => Category::all()->load('posts'),
+        'categories' => Category::all()
+
     ]);
 });
 Route::get('author/{author:username}',function(User $author){

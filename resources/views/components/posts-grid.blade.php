@@ -1,4 +1,4 @@
- @props(['posts'])
+ @props(['posts','currentCategory'])
  <x-post-featured-card :post="$posts[0]"/>
     <div class="grid grid-cols-6">
         @foreach ($posts->skip(1) as $post)
