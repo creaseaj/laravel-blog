@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +42,4 @@ Route::get('author', function() {
         'authors' => User::all()->load('posts')
     ]);
 });
+Route::get('/register', [RegisterController::class, 'create']);
