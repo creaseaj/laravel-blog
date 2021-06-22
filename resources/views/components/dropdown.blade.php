@@ -2,7 +2,7 @@
 <div class="relative items-center lg:inline-flex bg-gray-100 rounded-xl">
     <div x-data="{ show:false}" >
         {{-- Trigger --}}
-        <div @click="show = ! show" @click.away="show = ! show">
+        <div @click="show = ! show" @click.away="show = false">
 
             {{$trigger}}
         </div>
@@ -12,3 +12,5 @@
         {{$slot}}
 
     </div>
+</div>
+</div>
