@@ -18,6 +18,7 @@ const Home = () => {
         fetch('http://localhost/api/categories/' + router.query.slug)
             .then(response => response.json()) 
             .then(data => setData(data));
+        
     },[router.query.slug]);
     if(data.length > 0){
         console.log(data);
