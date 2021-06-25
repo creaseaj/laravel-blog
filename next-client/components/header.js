@@ -17,18 +17,13 @@ const Header = (props) => {
         </h1>
 
         <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
-            <button class="m-2 py-2 pl-3 pr-9 text-sm font-semibold  lg:w-32 text-left flex lg:inline-flex bg-gray-100 hover:bg-gray-300 rounded" onClick={() => setShowCat(!showCat)}>Categories</button>
+        <div className="w-32 relative items-center flex-col lg:inline-flex bg-gray-100 rounded-xl">
+            <button class="py-2 pl-3 pr-9 text-sm font-semibold  lg:w-32 text-left flex lg:inline-flex " onClick={() => setShowCat(!showCat)}>Categories</button>
+            {showCat ? (<CategoriesDiv categories={categories} />) : null}
+        </div>
+            
             <button class="m-2 py-2 pl-3 pr-9 text-sm font-semibold  lg:w-32 text-left flex lg:inline-flex bg-gray-100 hover:bg-gray-300 rounded" onClick={() => props.setCounter(props.counter + 1)}>More</button>
             <button class="m-2 py-2 pl-3 pr-9 text-sm font-semibold  lg:w-32 text-left flex lg:inline-flex bg-gray-100 hover:bg-gray-300 rounded" onClick={() => props.setCounter(props.counter - 1)}>Fewer</button>
-            {showCat ? (<CategoriesDiv categories={categories} />) : null}
-            
-            <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
-                <form method="GET" action="#">
-                    <input type="text" name="search" placeholder="Find something"
-                        value="Search Here"
-                        class="bg-transparent placeholder-black font-semibold text-sm" />
-                </form>
-            </div>
         </div>
     </header>
     )
