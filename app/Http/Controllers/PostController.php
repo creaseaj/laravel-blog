@@ -12,6 +12,9 @@ class PostController extends Controller
     public function apiIndex(){
         return Post::latest()->with('category','author')->filter(request(['search','category']))->get();
     }
+    public function apiShow(Post $post) {
+        return $post;
+    }
     public function index() {
 
         return view('posts',[
