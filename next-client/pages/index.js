@@ -11,17 +11,16 @@ const Home = () => {
     useEffect(async() => {
         fetch('http://localhost/api/posts')
             .then(response => response.json())
-            .then(data => setData(data));
+            .then(data => console.log(data));
     },[])
-    if(data == null){
-        console.log(data);
+
         return (
+            <div>
+            <Header />
             <PostGrid posts={data} />
+            </div>
             )
-    }
-    else {
-        return (<p>Loading ... </p>)
-    }
-      
+
+
 }
 export default Home;

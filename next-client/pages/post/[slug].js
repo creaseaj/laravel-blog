@@ -7,25 +7,22 @@ import Header from '../../components/header';
 import PostGrid from '../../components/postGrid';
 
 const Home = () => {
-    const router = useRouter();
-    const [data, setData] = useState([]);
+    const router = useRouter()
+    console.log(router.query)
+    const [post, setPost] = useState([]);
 
     useEffect(async() => {
-        if(router.query.slug){
-            fetch('http://localhost/api/categories/' + router.query.slug)
-            .then(response => response.json())
-            .then(data => setData(data));
+        if(!router.query.slug){
+            return
         }
-
+        fetch('http://localhost/api/post/' + router.query.slug)
+            .then(response => response.json())
+            .then(data => setPost(data));
 
     },[router.query.slug]);
-
+    console.log('http://localhost/api/post/' +router.query.slug);
         return (
-            <div>
-                <Header />
-                <PostGrid posts={data} />
-
-            </div>
+            <div>Hi!</div>
             )
 
 }
